@@ -7,8 +7,8 @@
     <meta name="description" content="{{ .Params.summary | default .Site.Params.summary }}">
 
     {{- $scssOptions := (dict
-        "targetPath" "main.css"
-        "enableSourceMap" false
+    "targetPath" "main.css"
+    "enableSourceMap" false
     ) -}}
     {{- $style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "styles/main.scss" . | resources.ToCSS $scssOptions | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
@@ -28,26 +28,25 @@
             "addressCountry": "Germany"
         }
     }
+
     </script>
 
 </head>
 <body class="echocat{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
 
-<div id="wrapper">
-    {{- block "header" . -}}
-        {{- partial "site-header.html" . -}}
-    {{- end }}
+{{- block "header" . -}}
+    {{- partial "site-header.html" . -}}
+{{- end }}
 
-    <main>
-        <div class="spacer">
-            {{- block "main" . -}}{{- end }}
-        </div>
-    </main>
+<main>
+    <div class="spacer">
+        {{- block "main" . -}}{{- end }}
+    </div>
+</main>
 
-    {{- block "footer" . -}}
-        {{- partialCached "site-footer.html" . -}}
-    {{- end }}
-</div>
+{{- block "footer" . -}}
+    {{- partialCached "site-footer.html" . -}}
+{{- end }}
 
 </body>
 </html>

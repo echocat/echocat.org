@@ -10,9 +10,12 @@ body {
     height: 100%;
 }
 
-#wrapper {
-    min-height: 100%;
-    position: relative;
+body {
+  min-height: 100vh;
+  margin: 0;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 a.undecorated,
@@ -287,11 +290,6 @@ members section.member .member-more-detail i.fa {
 }
 
 footer {
-    /*width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;*/
-
     background: rgb(43, 124, 180);
     color: rgb(255,255,255);
     fill: rgb(255,255,255);
