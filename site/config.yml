@@ -1,0 +1,6 @@
+baseURL: https://echocat.org/
+languageCode: en-us
+title: echocat
+
+params:
+  summary: echocat is an open source association with focus to support software and information technology operations projects.

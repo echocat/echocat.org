@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default "en" }}">
+<head>
+    <meta charset="utf-8">
+    <title>{{ $.Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ .Params.summary | default .Site.Params.summary }}">
+
+    {{- $scssOptions := (dict
+        "targetPath" "main.css"
+        "enableSourceMap" true
+    ) -}}
+    {{- $style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "styles/main.scss" . | resources.ToCSS $scssOptions | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+    <script type='application/ld+json'>
+    {
+        "@context": "http://www.schema.org",
+        "@type": "Organization",
+        "name": "echocat",
+        "url": "{{ $.Site.BaseURL }}",
+        "logo": "{{ $.Site.BaseURL }}resources/logo.svg",
+        "description": "echocat is an open source association with focus to support software and information technology operations projects.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Berlin",
+            "addressRegion": "Berlin",
+            "addressCountry": "Germany"
+        }
+    }
+    </script>
+
+</head>
+<body class="echocat{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
+
+<div id="wrapper">
+    {{- block "header" . -}}
+        {{- partial "site-header.html" . -}}
+    {{- end }}
+
+    <main>
+        <div class="spacer">
+            {{- block "main" . -}}{{- end }}
+        </div>
+    </main>
+
+    {{- block "footer" . -}}
+        {{- partialCached "site-footer.html" . -}}
+    {{- end }}
+</div>
+
+</body>
+</html>

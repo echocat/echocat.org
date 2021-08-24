@@ -1,0 +1,10 @@
+{{- with $.Site.Data.organization.statistics -}}
+    <statistics>
+        <ul class="statistics">
+            <li title="Projects"><i class="fa fa-folder"></i><span>{{ .numberOfRepositories }}</span></li>
+            <li title="Stars"><i class="fa fa-star"></i><span>{{ .numberOfStars }}</span></li>
+            <li title="Forks"><i class="fa fa-code-branch"></i><span>{{ .numberOfForks }}</span></li>
+            <li title="Open issues"><i class="fas fa-tasks"></i><span>{{ .numberOfOpenIssues }}</span></li>
+        </ul>
+    </statistics>
+{{- end -}}

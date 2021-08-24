@@ -1,0 +1,349 @@
+@import "roboto";
+@import "fontawesome-all";
+@import "stocks";
+
+html,
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+a.undecorated,
+a.undecorated:active,
+a.undecorated:hover,
+a.undecorated:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: #4078c0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 1em 0 0.2em 0;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+header {
+    background: rgb(43, 124, 180);
+    color: rgb(255,255,255);
+    fill: rgb(255,255,255);
+}
+
+header .spacer {
+    max-width: 998px;
+    margin: 0 auto;
+    padding: 1em 3em;
+}
+
+@media (max-width: 767px) {
+    header .spacer {
+        padding: 0.4em 0.4em 0.4em 0.4em;
+    }
+}
+
+header .title {
+    font-size: 3em;
+}
+
+@media (max-width: 767px) {
+    header .title {
+        font-size: 2em;
+        line-height: 1em;
+    }
+}
+
+@media (max-width: 767px) {
+    header .title span {
+        font-size: 0.8em;
+    }
+}
+
+{{- $logo := resources.Get "images/logo_withoutboarder.svg" | minify | fingerprint }}
+header .logo {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: url({{$logo.RelPermalink}}) center;
+    background-size: 100%;
+    vertical-align: top;
+}
+
+statistics {
+    display: block;
+    float: right;
+    font-size: 1em;
+    line-height: 3.9em;
+}
+@media (max-width: 767px) {
+    statistics {
+        font-size: 0.8em;
+        line-height: 2.8em;
+    }
+}
+
+.statistics {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+ul.statistics li {
+    margin: 0 0 0 0.8em;
+    padding: 0;
+    display: inline-block;
+}
+@media (max-width: 767px) {
+    statistics ul.statistics li {
+        margin-left: 0.4em;
+    }
+}
+ul.statistics li:first-child {
+    margin-left: 0;
+}
+
+ul.statistics li i {
+    margin-right: 0.2em;
+}
+
+main .spacer {
+    max-width: 998px;
+    margin: 0 auto;
+    padding: 2em 3em 4em 3em;
+}
+
+@media (max-width: 767px) {
+    main .spacer {
+        padding: 0.4em 0.4em 3em 0.4em;
+    }
+}
+
+article {
+    margin: 1.5em 0 0 0;
+}
+
+article:first-child {
+    margin-top: 0;
+}
+
+article h2:first-child {
+    margin-top: 0;
+}
+
+projects .listing {
+    margin: -0.5em -1em 0 -1em;
+}
+
+@media (max-width: 767px) {
+    projects .listing {
+        margin: -0.2em -0.4em 0 -0.4em;
+    }
+}
+
+projects section.project {
+    margin: 1em;
+    border: 1pt solid #ccc;
+    border-radius: 0.3em;
+    width: 29em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 767px) {
+    projects section.project {
+        margin: 0.4em;
+        width: auto;
+        display: block;
+    }
+}
+
+projects section.project .project-stock {
+    border-radius: 0.3em 0.3em 0 0;
+    background: #eee center;
+    background-size: cover;
+    height: 192px;
+    border-bottom: 1pt solid #ccc;
+    display: block;
+}
+
+projects section.project .project-title {
+    padding: 0.5em 0.8em;
+    font-size: 1.4em;
+}
+
+projects section.project .project-description {
+    padding: 0 1.1em 0.8em 1.1em;
+    min-height: 4em;
+}
+
+projects section.project .project-stats {
+    padding: 0 1.1em 0.8em 1.1em;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+members .listing {
+    margin: -0.5em -1em 0 -1em;
+}
+
+@media (max-width: 767px) {
+    members .listing {
+        margin: -0.2em -0.4em 0 -0.4em;
+    }
+}
+
+members section.member {
+    margin: 1em;
+    border: 1pt solid #ccc;
+    border-radius: 0.2em;
+    width: 29em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 767px) {
+    members section.member {
+        margin: 0.4em;
+        width: auto;
+        display: block;
+    }
+}
+
+members section.member .spacer {
+    padding: 1.1em;
+}
+
+members section.member .member-avatar img,
+members section.member .member-avatar .placeholder {
+    border-radius: 0.2em;
+    width: 3em;
+    height: 3em;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+members section.member .member-avatar {
+    float: left;
+}
+
+members section.member .member-details {
+    margin: 0 0 0 4em;
+    min-height: 3em;
+}
+
+members section.member .member-fullname {
+    font-size: 1.4em;
+}
+
+members section.member .member-login {
+    margin-top: 0.1em;
+    color: #717171;
+}
+
+members section.member .member-bio,
+members section.member .member-more-detail {
+    margin: 0.5em 0 0 0;
+    padding: 0.5em 0 0 0;
+    font-size: 0.8em;
+    border-top: 1px solid #ccc;
+}
+
+members section.member .member-more-detail {
+    list-style: none;
+}
+
+members section.member .member-more-detail li {
+    margin: 0;
+    padding: 0.2em 0;
+}
+
+members section.member .member-more-detail i.fa {
+    margin-right: 0.7em;
+    width: 1em;
+    text-align: center;
+}
+
+footer {
+    /*width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;*/
+
+    background: rgb(43, 124, 180);
+    color: rgb(255,255,255);
+    fill: rgb(255,255,255);
+}
+
+footer .spacer {
+    max-width: 998px;
+    margin: 0 auto;
+    padding: 0.5em 3em;
+}
+
+@media (max-width: 767px) {
+    footer .spacer {
+        padding: 0.4em 0.4em 0.4em 0.4em;
+    }
+}
+
+footer .social-intro {
+    font-size: 1.1em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+    footer .social-intro {
+        font-size: 1em;
+    }
+}
+
+footer .social-link {
+    color: rgba(255, 255, 255, 1);
+    fill: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-size: 1.8em;
+    vertical-align: middle;
+}
+
+footer .copyright {
+    float: right;
+    font-size: 0.8em;
+    line-height: 2.7em;
+}
+
+{{ range resources.Match "images/stocks/*" }}
+    {{ if eq .MediaType.MainType "image" }}
+        {{- $name := .Name -}}
+        {{- $name = $name | replaceRE `^.+/([^/]+)$` `$1` -}}
+        {{- $name = $name | replaceRE `/` `_` -}}
+        {{- $name = $name | replaceRE `^(.+)\.[^.]+$` `$1` -}}
+        {{- $url := . | minify | fingerprint }}
+        [data-stock-category={{$name}}] {
+            background-image: url({{$url.RelPermalink}}) !important;
+        }
+    {{ end }}
+{{ end }}

@@ -1,0 +1,66 @@
+<projects>
+    <article>
+        <h2>Projects</h2>
+        <div class="listing">
+            {{ range .Site.Data.organization.projects }}
+                {{- $language := .language -}}
+                {{- if eq $language `Go` -}}
+                    {{- $language = `Golang` -}}
+                {{- end }}
+                <section class="project" data-type="{{.type}}" data-fullname="{{.fullname}}">
+                    <a class="project-stock undecorated"
+                       data-stock-category="{{ partial `stock-category` .fullname }}"
+                       href="{{.homepageUrl}}"
+                       title="{{.name}}"></a>
+                    <div class="project-title">
+                        <a href="{{.homepageUrl}}">{{.name}}</a>
+                    </div>
+                    <div class="project-description">
+                        {{.description}}
+                    </div>
+                    <div class="project-stats">
+                        <ul class="statistics">
+                            <li>
+                                <a title="Repository" class="undecorated" href="{{.profileUrl}}">
+                                    <i class="fab fa-{{.origin}}"></i><span>{{$language}}</span>
+                                </a>
+                            </li>
+                            {{if .numberOfWatchers}}
+                                <li>
+                                    <a title="Watchers" class="undecorated" href="{{.watchersUrl}}">
+                                        <i class="fa fa-eye"></i>{{.numberOfWatchers}}
+                                    </a>
+                                </li>
+                            {{end}}
+
+                            {{if .numberOfStars}}
+                                <li>
+                                    <a title="Stars" class="undecorated" href="{{.starsUrl}}">
+                                        <i class="fa fa-star"></i>{{.numberOfStars}}
+                                    </a>
+                                </li>
+                            {{end}}
+
+                            {{if .numberOfForks}}
+                                <li>
+                                    <a title="Forks" class="undecorated" href="{{.forksUrl}}">
+                                        <i class="fa fa-code-branch"></i>{{.numberOfForks}}
+                                    </a>
+                                </li>
+                            {{end}}
+
+                            {{if and .numberOfOpenIssues (or .issuesUrl .pullRequestsUrl)}}
+                                <li>
+                                    <a title="Open issues" class="undecorated" href="{{.issuesUrl | default .pullRequestsUrl}}">
+                                        <i class="fas fa-tasks"></i>{{.numberOfOpenIssues}}
+                                    </a>
+                                </li>
+                            {{end}}
+
+                        </ul>
+                    </div>
+                </section>
+            {{ end }}
+        </div>
+    </article>
+</projects>

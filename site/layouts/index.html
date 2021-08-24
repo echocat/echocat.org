@@ -1,0 +1,12 @@
+{{ define "main" }}
+
+    <article class="introduction">
+        <h2>Summary</h2>
+        <p>{{ .Site.Params.Summary }}</p>
+    </article>
+
+    {{partial "projects" .}}
+
+    {{partial "members" .}}
+
+{{ end }}

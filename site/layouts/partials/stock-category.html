@@ -1,0 +1,15 @@
+{{- $projectName := . -}}
+
+{{- $done := false -}}
+{{- range site.Data.stocks.assignments -}}
+    {{- if not $done -}}
+        {{- if findRE .pattern $projectName -}}
+            {{- .class -}}
+            {{- $done = true -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- if not $done -}}
+    code
+{{- end -}}

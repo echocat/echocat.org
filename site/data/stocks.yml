@@ -1,0 +1,45 @@
+assignments:
+  - pattern: "echocat\\.org"
+    class: echocat
+  - pattern: "/jogg$"
+    class: sound
+  - pattern: "jemoni$"
+    class: monitoring
+  - pattern: "/velma$"
+    class: security
+  - pattern: "heartbeat"
+    class: heartbeat
+  - pattern: "https-enabler"
+    class: security
+  - pattern: "caretakerd"
+    class: caretaker
+  - pattern: "adam"
+    class: adam
+  - pattern: "gradle-golang"
+    class: gradle-and-golang
+  - pattern: "nfs"
+    class: storage
+  - pattern: "redis"
+    class: redis
+  - pattern: "_exporter$"
+    class: prometheus
+  - pattern: "kibana"
+    class: kibana
+  - pattern: "grafana"
+    class: grafana
+  - pattern: "mongodb"
+    class: mongodb
+  - pattern: "oracle-java"
+    class: java
+  - pattern: "jdk"
+    class: java
+  - pattern: "jre"
+    class: java
+  - pattern: "docker"
+    class: docker
+  - pattern: "puppet"
+    class: puppet
+  - pattern: "nagios"
+    class: monitoring
+  - pattern: "/go.*$"
+    class: golang

@@ -1,0 +1,82 @@
+<members>
+    <article>
+        <h2>Members</h2>
+        <div class="listing">
+            {{ range .Site.Data.organization.members }}
+            <section class="member">
+                <div class="spacer">
+                    <div class="member-avatar">
+                        {{ if .profileUrl }}
+                            <a href="{{.profileUrl}}">
+                                {{ if .imageUrl }}
+                                    <img alt="{{.name}}" src="{{.imageUrl}}&s=96" />
+                                {{ else }}
+                                    <div class="placeholder"></div>
+                                {{ end }}
+                            </a>
+                        {{ else }}
+                            {{ if .imageUrl }}
+                                <img alt="{{.name}}" src="{{.imageUrl}}&s=96" />
+                            {{ else }}
+                                <div class="placeholder"></div>
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                    <div class="member-details">
+                        <div class="member-fullname">
+                            {{ if .profileUrl }}
+                                <a href="{{.profileUrl}}">{{.fullname}}</a>
+                            {{ else }}
+                                <span>{{.fullname}}</span>
+                            {{ end }}
+                        </div>
+
+                        <div class="member-login">
+                            {{ if .profileUrl }}
+                                <a href="{{.profileUrl}}" class="undecorated">{{.name}}</a>
+                            {{ else }}
+                                <span>{{.name}}</span>
+                            {{ end }}
+                        </div>
+
+                        {{ if .bio }}
+                            <div class="member-bio">
+                                {{.bio}}
+                            </div>
+                        {{ end }}
+
+                        <ul class="member-more-detail">
+                            {{ if .company }}
+                                <li class="member-company">
+                                    <i class="fa fa-building" aria-hidden="true"></i>{{.company}}
+                                </li>
+                            {{ end }}
+
+                            {{ if .location }}
+                                <li class="member-location">
+                                    <i class="fa fa-map-pin" aria-hidden="true"></i>{{.location}}
+                                </li>
+                            {{ end }}
+
+                            {{ if .email }}
+                                <li class="member-email">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <a href="mailto:{{.email}}">{{.email}}</a>
+                                </li>
+                            {{ end }}
+
+                            {{ if .homepageUrl }}
+                                <li class="member-homepage">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <a href="{{.homepageUrl}}">{{.homepageUrl}}</a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            {{ end }}
+        </div>
+    </article>
+
+</members>
