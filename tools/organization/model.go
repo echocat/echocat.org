@@ -105,7 +105,7 @@ type project struct {
 	DefaultBranch      *string    `json:"defaultBranch"`
 	Language           *string    `json:"language"`
 	HomepageUrl        *string    `json:"homepageUrl"`
-	ImageUrl           *string    `json:"imageUrl"`
+	ImageAsset         *string    `json:"imageAsset"`
 	ProfileUrl         string     `json:"profileUrl"`
 	HttpCloneUrl       *string    `json:"httpCloneUrl"`
 	SshCloneUrl        *string    `json:"sshCloneUrl"`
@@ -146,7 +146,7 @@ type member struct {
 	Fullname    string     `json:"fullname"`
 	Name        string     `json:"name"`
 	Email       *string    `json:"email"`
-	ImageUrl    string     `json:"imageUrl"`
+	ImageAsset  string     `json:"imageAsset"`
 	ProfileUrl  string     `json:"profileUrl"`
 	Bio         *string    `json:"bio"`
 	Location    *string    `json:"location"`

@@ -15,6 +15,7 @@ var (
 
 type gitlabClient struct {
 	accessToken string
+	assetClient *assetClient
 }
 
 type gitlabClientRetrieveTask struct {
@@ -24,8 +25,9 @@ type gitlabClientRetrieveTask struct {
 	ctx    context.Context
 }
 
-func newGitlabClient() *gitlabClient {
+func newGitlabClient(assetClient *assetClient) *gitlabClient {
 	return &gitlabClient{
+		assetClient: assetClient,
 		accessToken: *gitlabAccessToken,
 	}
 }
@@ -114,9 +116,13 @@ func (instance *gitlabClientRetrieveTask) groupMemberToMember(repo gitlab.GroupM
 		if len(homepage) == 0 {
 			homepage = profile
 		}
-		avatarUrl := detailed.AvatarURL
-		if len(avatarUrl) == 0 {
-			avatarUrl = "https://www.gravatar.com/avatar/00000000000000000000000000000000"
+		imageAsset := ""
+		if detailed.AvatarURL != "" {
+			r, err := instance.assetClient.retrieve(detailed.AvatarURL)
+			if err != nil {
+				return member{}, err
+			}
+			imageAsset = r
 		}
 
 		return member{
@@ -124,7 +130,7 @@ func (instance *gitlabClientRetrieveTask) groupMemberToMember(repo gitlab.GroupM
 			Fullname:    fullname,
 			Name:        name,
 			Email:       pNonEmptyString(detailed.Email),
-			ImageUrl:    avatarUrl,
+			ImageAsset:  imageAsset,
 			ProfileUrl:  profile,
 			Bio:         pNonEmptyString(detailed.Bio),
 			Location:    pNonEmptyString(detailed.Location),
@@ -232,6 +238,15 @@ func (instance *gitlabClientRetrieveTask) groupProjectToProject(repo gitlab.Proj
 	createForkUrl := detailed.WebURL + "/forks/new"
 	starsUrl := detailed.WebURL + "/-/starrers"
 
+	imageAsset := ""
+	if detailed.AvatarURL != "" {
+		r, err := instance.assetClient.retrieve(detailed.AvatarURL)
+		if err != nil {
+			return project{}, err
+		}
+		imageAsset = r
+	}
+
 	return project{
 		Type:               "repository:git:gitlab",
 		Origin:             "gitlab",
@@ -241,7 +256,7 @@ func (instance *gitlabClientRetrieveTask) groupProjectToProject(repo gitlab.Proj
 		DefaultBranch:      pNonEmptyString(detailed.DefaultBranch),
 		Language:           pNonEmptyString(language),
 		HomepageUrl:        pNonEmptyString(detailed.WebURL),
-		ImageUrl:           pNonEmptyString(detailed.AvatarURL),
+		ImageAsset:         pNonEmptyString(imageAsset),
 		ProfileUrl:         detailed.WebURL,
 		HttpCloneUrl:       pNonEmptyString(detailed.HTTPURLToRepo),
 		SshCloneUrl:        pNonEmptyString(detailed.SSHURLToRepo),

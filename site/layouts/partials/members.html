@@ -3,20 +3,25 @@
         <h2>Members</h2>
         <div class="listing">
             {{ range .Site.Data.organization.members }}
+                {{- $image := false -}}
+                {{- with .imageAsset -}}
+                    {{- $image = resources.Get (printf "images/d/%s" .) -}}
+                    {{- $image = $image.Fit "192x192 q95" -}}
+                {{- end }}
             <section class="member">
                 <div class="spacer">
                     <div class="member-avatar">
                         {{ if .profileUrl }}
                             <a href="{{.profileUrl}}">
-                                {{ if .imageUrl }}
-                                    <img alt="{{.name}}" src="{{.imageUrl}}&s=96" />
+                                {{ if $image }}
+                                    <img alt="{{.name}}" src="{{$image.RelPermalink}}" />
                                 {{ else }}
                                     <div class="placeholder"></div>
                                 {{ end }}
                             </a>
                         {{ else }}
-                            {{ if .imageUrl }}
-                                <img alt="{{.name}}" src="{{.imageUrl}}&s=96" />
+                            {{ if $image }}
+                                <img alt="{{.name}}" src="{{$image.RelPermalink}}" />
                             {{ else }}
                                 <div class="placeholder"></div>
                             {{ end }}

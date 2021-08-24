@@ -8,7 +8,7 @@
 
     {{- $scssOptions := (dict
         "targetPath" "main.css"
-        "enableSourceMap" true
+        "enableSourceMap" false
     ) -}}
     {{- $style := resources.Get "styles/main.scss" | resources.ExecuteAsTemplate "styles/main.scss" . | resources.ToCSS $scssOptions | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">

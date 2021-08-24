@@ -17,6 +17,7 @@ var (
 
 type githubClient struct {
 	accessToken string
+	assetClient *assetClient
 }
 
 type githubClientRetrieveTask struct {
@@ -26,8 +27,9 @@ type githubClientRetrieveTask struct {
 	ctx    context.Context
 }
 
-func newGithubClient() *githubClient {
+func newGithubClient(assetClient *assetClient) *githubClient {
 	return &githubClient{
+		assetClient: assetClient,
 		accessToken: *githubAccessToken,
 	}
 }
@@ -111,6 +113,15 @@ func (instance *githubClientRetrieveTask) userToMember(repo github.User) (member
 		if len(homepage) == 0 {
 			homepage = detailed.GetHTMLURL()
 		}
+
+		imageAsset := ""
+		if avatarUrl := detailed.GetAvatarURL(); avatarUrl != "" {
+			r, err := instance.assetClient.retrieve(avatarUrl)
+			if err != nil {
+				return member{}, err
+			}
+			imageAsset = r
+		}
 		avatarUrl := detailed.GetAvatarURL()
 		if len(avatarUrl) == 0 {
 			avatarUrl = "https://www.gravatar.com/avatar/00000000000000000000000000000000"
@@ -121,7 +132,7 @@ func (instance *githubClientRetrieveTask) userToMember(repo github.User) (member
 			Fullname:    fullname,
 			Name:        name,
 			Email:       pString(detailed.GetEmail()),
-			ImageUrl:    avatarUrl,
+			ImageAsset:  imageAsset,
 			ProfileUrl:  detailed.GetHTMLURL(),
 			Bio:         pString(detailed.GetBio()),
 			Location:    pString(detailed.GetLocation()),

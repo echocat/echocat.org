@@ -34,7 +34,7 @@ jobs:
 
       - name: Fetch organization
         working-directory: tools/organization
-        run: go run github.com/echocat/echocat.org/tools/organization --output=../../site/data/organization.json "--githubAccessToken=${{ secrets.GITHUB_TOKEN }}" "--gitlabAccessToken=${{ secrets.GITLAB_TOKEN }}"
+        run: go run github.com/echocat/echocat.org/tools/organization --output=../../site/data/organization.json --assets=../../site/assets/images/d "--githubAccessToken=${{ secrets.GITHUB_TOKEN }}" "--gitlabAccessToken=${{ secrets.GITLAB_TOKEN }}"
 
       - name: Build page
         working-directory: site
