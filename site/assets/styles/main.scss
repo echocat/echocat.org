@@ -339,7 +339,7 @@ footer .copyright {
         {{- $name = $name | replaceRE `^.+/([^/]+)$` `$1` -}}
         {{- $name = $name | replaceRE `/` `_` -}}
         {{- $name = $name | replaceRE `^(.+)\.[^.]+$` `$1` -}}
-        {{- $url := . | minify | fingerprint }}
+        {{- $url := . | fingerprint }}
         [data-stock-category={{$name}}] {
             background-image: url({{$url.RelPermalink}}) !important;
         }
