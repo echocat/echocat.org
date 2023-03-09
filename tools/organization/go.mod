@@ -6,13 +6,13 @@ require (
 	github.com/echocat/slf4g v1.4.1
 	github.com/echocat/slf4g/native v1.4.1
 	github.com/google/go-github/v50 v50.1.0
-	github.com/xanzy/go-gitlab v0.80.3
+	github.com/xanzy/go-gitlab v0.81.0
 	golang.org/x/oauth2 v0.6.0
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 )
 
 require (
-	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.2 // indirect
@@ -24,5 +24,5 @@ require (
 	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
+	google.golang.org/protobuf v1.29.0 // indirect
 )
