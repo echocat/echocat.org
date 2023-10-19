@@ -3,7 +3,7 @@ module github.com/echocat/echocat.org/tools/organization
 go 1.20
 
 require (
-	github.com/echocat/slf4g v1.5.1
+	github.com/echocat/slf4g v1.5.2
 	github.com/echocat/slf4g/native v1.5.1
 	github.com/google/go-github/v50 v50.2.0
 	github.com/xanzy/go-gitlab v0.93.1
