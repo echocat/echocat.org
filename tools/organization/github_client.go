@@ -159,7 +159,7 @@ func (instance *githubClientRetrieveTask) retrieveProjects() ([]project, error) 
 			if *githubMaximumNumberOfEntries > 0 && i > *githubMaximumNumberOfEntries {
 				break
 			}
-			if !repo.GetArchived() {
+			if !repo.GetArchived() && repo.Name != nil && *repo.Name != "echocat.org" {
 				if project, err := instance.repoToProject(*repo); err != nil {
 					return nil, fmt.Errorf("cannot get details of project '%s': %w", *repo.Name, err)
 				} else {

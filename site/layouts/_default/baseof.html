@@ -1,10 +1,27 @@
+{{- $img := resources.Get "images/stocks/echocat.jpg" -}}
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}">
+<html lang="{{  site.LanguageCode | default "en" }}">
 <head>
     <meta charset="utf-8">
     <title>{{ $.Title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ .Params.summary | default .Site.Params.summary }}">
+
+    <meta name="description" content="{{ $.Params.summary | default site.Params.summary }}">
+    <link rel="canonical" href="{{ $.Page.Permalink }}">
+    {{- $date := time ($.Date | default $.Lastmod | default time.Now ) }}
+    {{- $lastMod := time (.Lastmod | default $date ) }}
+    <meta name="date" content="{{ $date }}">
+    <meta name="last-modified" content="{{ $lastMod }}">
+    <meta property="og:locale" content="en" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ $.Title }}" />
+    <meta name="twitter:description" content="{{ $.Params.summary | default site.Params.summary }}" />
+    <meta property="twitter:image" content="{{($img | fingerprint).RelPermalink}}" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $.Page.Permalink }}" />
+    <meta property="og:title" content="{{ $.Title }}" />
+    <meta property="og:description" content="{{ $.Params.summary | default site.Params.summary }}" />
+    <meta property="og:image" content="{{($img | fingerprint).RelPermalink}}" />
 
     {{- $scssOptions := (dict
     "targetPath" "main.css"
@@ -18,9 +35,9 @@
         "@context": "http://www.schema.org",
         "@type": "Organization",
         "name": "echocat",
-        "url": "{{ $.Site.BaseURL }}",
-        "logo": "{{ $.Site.BaseURL }}resources/logo.svg",
-        "description": "echocat is an open source association with focus to support software and information technology operations projects.",
+        "url": "{{ site.BaseURL }}",
+        "logo": "{{ site.BaseURL }}resources/logo.svg",
+        "description": "{{ site.Params.summary }}",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Berlin",

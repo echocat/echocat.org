@@ -6,7 +6,9 @@
                 {{- $image := false -}}
                 {{- with .imageAsset -}}
                     {{- $image = resources.Get (printf "images/d/%s" .) -}}
-                    {{- $image = $image.Fit "192x192 q95" -}}
+                    {{- if $image -}}
+                        {{- $image = $image.Fit "192x192 q95" -}}
+                    {{- end -}}
                 {{- end }}
             <section class="member">
                 <div class="spacer">
