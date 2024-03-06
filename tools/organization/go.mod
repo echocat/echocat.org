@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/echocat/slf4g v1.5.3
-	github.com/echocat/slf4g/native v1.5.2
+	github.com/echocat/slf4g/native v1.5.3
 	github.com/google/go-github/v50 v50.2.0
 	github.com/xanzy/go-gitlab v0.99.0
 	golang.org/x/oauth2 v0.18.0
