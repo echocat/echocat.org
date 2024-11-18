@@ -6,7 +6,7 @@ require (
 	github.com/echocat/slf4g v1.6.1
 	github.com/echocat/slf4g/native v1.6.1
 	github.com/google/go-github/v50 v50.2.0
-	github.com/xanzy/go-gitlab v0.113.0
+	github.com/xanzy/go-gitlab v0.114.0
 	golang.org/x/oauth2 v0.24.0
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 )
