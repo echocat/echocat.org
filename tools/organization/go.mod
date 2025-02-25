@@ -1,6 +1,6 @@
 module github.com/echocat/echocat.org/tools/organization
 
-go 1.20
+go 1.24
 
 require (
 	github.com/echocat/slf4g v1.6.3
