@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+
 	"github.com/xanzy/go-gitlab"
 )
 
@@ -139,7 +140,7 @@ func (instance *gitlabClientRetrieveTask) groupMemberToMember(repo gitlab.GroupM
 			SkypeId:     pNonEmptyString(detailed.Skype),
 			LinkedinId:  pNonEmptyString(detailed.Linkedin),
 			HomepageUrl: &homepage,
-			CreatedAt:   pTime(*detailed.CreatedAt),
+			CreatedAt:   detailed.CreatedAt,
 		}, nil
 	}
 }

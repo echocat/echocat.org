@@ -17,6 +17,8 @@ func (instance *compoundClient) retrieveOrganization() (organization, error) {
 		}
 	}
 
+	result = result.clean()
+
 	log.Info("Starting to retrieve the organization details... DONE!")
 
 	return result, nil

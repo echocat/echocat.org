@@ -4,9 +4,10 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"net/http"
+
 	"github.com/google/go-github/v50/github"
 	"golang.org/x/oauth2"
-	"net/http"
 )
 
 var (
@@ -159,7 +160,7 @@ func (instance *githubClientRetrieveTask) retrieveProjects() ([]project, error) 
 			if *githubMaximumNumberOfEntries > 0 && i > *githubMaximumNumberOfEntries {
 				break
 			}
-			if !repo.GetArchived() && repo.Name != nil && *repo.Name != "echocat.org" {
+			if !repo.GetArchived() && repo.Name != nil {
 				if project, err := instance.repoToProject(*repo); err != nil {
 					return nil, fmt.Errorf("cannot get details of project '%s': %w", *repo.Name, err)
 				} else {

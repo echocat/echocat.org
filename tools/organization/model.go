@@ -43,6 +43,17 @@ func (instance organization) merge(with ...organization) (result organization) {
 	return
 }
 
+func (instance organization) clean() (result organization) {
+	result = organization{
+		Members:    instance.Members.clean(),
+		Projects:   instance.Projects.clean(),
+		Statistics: instance.Statistics,
+	}
+
+	result.align()
+	return
+}
+
 func (instance organization) membersAsMap() map[string]member {
 	result := map[string]member{}
 	for _, member := range instance.Members {
@@ -126,19 +137,30 @@ type project struct {
 
 type projects []project
 
-func (a projects) Len() int      { return len(a) }
-func (a projects) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
-func (a projects) Less(i, j int) bool {
-	if a[i].UpdatedAt == nil && a[j].UpdatedAt == nil {
+func (instance projects) Len() int      { return len(instance) }
+func (instance projects) Swap(i, j int) { instance[i], instance[j] = instance[j], instance[i] }
+func (instance projects) Less(i, j int) bool {
+	if instance[i].UpdatedAt == nil && instance[j].UpdatedAt == nil {
 		return false
 	}
-	if a[i].UpdatedAt == nil {
+	if instance[i].UpdatedAt == nil {
 		return false
 	}
-	if a[j].UpdatedAt == nil {
+	if instance[j].UpdatedAt == nil {
 		return true
 	}
-	return a[i].UpdatedAt.After(*a[j].UpdatedAt)
+	return instance[i].UpdatedAt.After(*instance[j].UpdatedAt)
+}
+
+func (instance projects) clean() (result projects) {
+	result = make(projects, 0, len(instance))
+	for _, v := range instance {
+		if v.Origin == "github" && v.Name == "echocat.org" {
+			continue
+		}
+		result = append(result, v)
+	}
+	return result
 }
 
 type member struct {
@@ -159,11 +181,22 @@ type member struct {
 	UpdatedAt   *time.Time `json:"updatedAt"`
 }
 
-func (a members) Len() int           { return len(a) }
-func (a members) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a members) Less(i, j int) bool { return a[i].Fullname < a[j].Fullname }
+func (instance members) Len() int           { return len(instance) }
+func (instance members) Swap(i, j int)      { instance[i], instance[j] = instance[j], instance[i] }
+func (instance members) Less(i, j int) bool { return instance[i].Fullname < instance[j].Fullname }
 
 type members []member
+
+func (instance members) clean() (result members) {
+	result = make(members, 0, len(instance))
+	for _, v := range instance {
+		if v.Name == "echocat-bot" || v.Name == "echocat" {
+			continue
+		}
+		result = append(result, v)
+	}
+	return result
+}
 
 func (instance member) merge(with ...member) member {
 	result := instance
