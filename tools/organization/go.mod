@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/echocat/slf4g v1.8.2
-	github.com/echocat/slf4g/native v1.7.0
+	github.com/echocat/slf4g/native v1.8.2
 	github.com/google/go-github/v50 v50.2.0
 	github.com/xanzy/go-gitlab v0.115.0
 	golang.org/x/oauth2 v0.34.0
