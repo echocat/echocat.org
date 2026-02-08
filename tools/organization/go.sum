@@ -7,8 +7,8 @@ github.com/cloudflare/circl v1.6.1/go.mod h1:uddAzsPgqdMAYatqJ0lsjX1oECcQLIlRpzZ
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/echocat/slf4g v1.8.3 h1:xnAQCP7ZTXtzZeJacfj8Zb4xPph1IWD6wpSK/j6sh8Y=
-github.com/echocat/slf4g v1.8.3/go.mod h1:YvF/d1TcPvT+/xiHStLHPI4xPT1GGeEmPczn2MSljNA=
+github.com/echocat/slf4g v1.8.4 h1:wWHO1xJRtzzWrgKUnmTA8CEv/SL+pJTzkyPbnKh1apA=
+github.com/echocat/slf4g v1.8.4/go.mod h1:YvF/d1TcPvT+/xiHStLHPI4xPT1GGeEmPczn2MSljNA=
 github.com/echocat/slf4g/native v1.8.3 h1:FualjGotDV80C71YEjQLVz6UmI2uqgZlfQDV/Y//KxM=
 github.com/echocat/slf4g/native v1.8.3/go.mod h1:6ap2wna8A0hB8HrGy7jI0XSUF+7MmDVimcldnLy/K8Q=
 github.com/fatih/color v1.16.0 h1:zmkK9Ngbjj+K0yRhTVONQh1p/HknKYSlNT+vZCzyokM=
